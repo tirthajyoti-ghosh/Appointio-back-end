@@ -1,6 +1,7 @@
 class SessionsController <  ApplicationController
   include CurrentUserConcern
 
+  # POST /login
   def create
     user = User
             .find_by(email: params[:user][:email])
@@ -15,6 +16,7 @@ class SessionsController <  ApplicationController
     end
   end
 
+  # GET /logged_in
   def logged_in
     if @current_user
       render json: { logged_in: true, user: @current_user }
@@ -23,7 +25,8 @@ class SessionsController <  ApplicationController
     end
   end
 
-  def logout
+  # DELETE /logout
+  def destroy
     reset_session
     render json: { status: 200, logged_in: false }
   end
