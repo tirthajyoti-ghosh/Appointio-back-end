@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :registrations, only: [:create]
 
   get '/types', to: "types#index"
+  get '/types/:id', to: "types#show"
 
   get '/apartments', to: "apartments#index"
   get '/apartments/:id', to: "apartments#show"
