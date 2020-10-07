@@ -10,9 +10,9 @@ class SessionsController <  ApplicationController
     if user
       session[:user_id] = user.id
 
-      render json: { status: :created, logged_in: true, user: user }
+      render json: { logged_in: true, user: user }, status: :created
     else
-      render json: { status: 401 }
+      render json: { message: 'Invalid email/password' }, status: 422
     end
   end
 
@@ -28,6 +28,6 @@ class SessionsController <  ApplicationController
   # DELETE /logout
   def destroy
     reset_session
-    render json: { status: 200, logged_in: false }
+    render json: { logged_out: true }
   end
 end
