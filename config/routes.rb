@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/types', to: "types#index"
 
   get '/apartments', to: "apartments#index"
+  get '/apartments/:id', to: "apartments#show"
 
   resources :appointments, only: [:index, :create, :update, :destroy]
 end
