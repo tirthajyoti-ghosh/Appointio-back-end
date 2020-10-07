@@ -1,8 +1,9 @@
 class ApartmentsController < ApplicationController
+  include ProcessDataConcern
+
   def index
     apartments = Apartment.includes(:images, :type)
 
-    # TODO: include images and type
-    render json: { apartments: apartments }
+    render json: { apartments: process_apartments(apartments) }
   end
 end
