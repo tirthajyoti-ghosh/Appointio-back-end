@@ -20,20 +20,8 @@ module ProcessDataConcern
       deposit: apartment.deposit,
       sq_ft: apartment.sq_ft,
       lease_length: apartment.lease_length,
-      images: process_images(apartment.images),
+      images: apartment.images,
       type: apartment.type.name,
     }
-  end
-  
-  # Helper method
-
-  def process_images(images)
-    images_array = []
-
-    images.each do |image|
-      images_array << { id: image.id, url: image.url }
-    end
-
-    images_array
   end
 end
