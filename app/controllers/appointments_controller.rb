@@ -24,6 +24,19 @@ class AppointmentsController < ApplicationController
     end  
   end
 
+  def destroy
+    appointment = Appointment.find(params[:id])
+
+    render json: { message: 'This appointment does not exist.' }, status: 404
+
+    if appointment.user_id == @current_user.id
+      appointment.destroy
+      render json: { status: 'Success' }
+    else
+      render json: { message: 'You are not authorized to perform this action.' }, status: 401
+    end
+  end
+
   private
 
   def validate_login
