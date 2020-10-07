@@ -10,6 +10,20 @@ class AppointmentsController < ApplicationController
     render json: { appointments: process_appointments(appointments) }
   end
 
+  def create
+    appointment = Appointment.new(
+      date: params[:appointment][:date],
+      apartment_id: params[:appointment][:apartment_id],
+      user_id: @current_user.id
+    )
+
+    if appointment.save
+      render json: { status: 'Success' }, status: :created
+    else
+      render json: { message: 'Server error. Try again.' }, status: 500
+    end  
+  end
+
   private
 
   def validate_login
