@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get '/apartments', to: "apartments#index"
   get '/apartments/:id', to: "apartments#show"
 
-  resources :appointments, only: [:index, :create, :update, :destroy]
+  resources :appointments, only: [:index, :create, :destroy]
 end

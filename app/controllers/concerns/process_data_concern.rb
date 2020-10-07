@@ -24,4 +24,20 @@ module ProcessDataConcern
       type: apartment.type.name,
     }
   end
+
+  def process_appointments(appointments)
+    appointments_array = []
+
+    appointments.each do |appointment|
+      appointments_array << { 
+                              id: appointment.id, 
+                              date: appointment.date.to_s(:long), 
+                              apartment_id: appointment.apartment_id,
+                              apartment_address: appointment.apartment.address,
+                              created_at: appointment.created_at.to_s(:long)  
+                            }
+    end
+
+    appointments_array
+  end
 end
