@@ -18,20 +18,20 @@ class AppointmentsController < ApplicationController
     )
 
     if appointment.save
-      render json: { status: 'Success' }, status: :created
+      render json: { message: 'Appointment created!' }, status: :created
     else
-      render json: { message: 'Server error. Try again.' }, status: 500
-    end  
+      render json: { message: 'Request failed. Try again.' }, status: 500
+    end
   end
 
   def destroy
     appointment = Appointment.find(params[:id])
 
-    render json: { message: 'This appointment does not exist.' }, status: 404
+    render json: { message: 'This appointment does not exist.' }, status: 404 unless appointment
 
     if appointment.user_id == @current_user.id
       appointment.destroy
-      render json: { status: 'Success' }
+      render json: { message: 'Appointment deleted!' }
     else
       render json: { message: 'You are not authorized to perform this action.' }, status: 401
     end
