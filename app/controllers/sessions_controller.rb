@@ -10,7 +10,7 @@ class SessionsController <  ApplicationController
     if user
       session[:user_id] = user.id
 
-      render json: { logged_in: true, user: user }, status: :created
+      render json: { logged_in: true, user: { id: user.id, name: user.name, email: user.email } }, status: :created
     else
       render json: { message: 'Invalid email/password' }, status: 422
     end
@@ -19,7 +19,7 @@ class SessionsController <  ApplicationController
   # GET /logged_in
   def logged_in
     if @current_user
-      render json: { logged_in: true, user: @current_user }
+      render json: { logged_in: true, user: { id: @current_user.id, name: @current_user.name, email: @current_user.email } }
     else
       render json: { logged_in: false }
     end
