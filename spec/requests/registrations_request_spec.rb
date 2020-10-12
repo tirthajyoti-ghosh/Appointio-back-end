@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Registrations", type: :request do
-  describe 'POST api/users' do
+  describe 'POST /registrations' do
     it 'creates user' do
       post 'http://localhost:3000/registrations',
            params:
