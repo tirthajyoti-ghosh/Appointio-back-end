@@ -68,6 +68,11 @@ GEM
     database_cleaner (1.8.5)
     diff-lcs (1.4.4)
     erubi (1.9.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
@@ -225,6 +230,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   database_cleaner
+  factory_bot_rails
   faker
   jbuilder (~> 2.7)
   listen (~> 3.2)
