@@ -5,9 +5,9 @@ RSpec.describe User, type: :model do
     it { should have_many(:appointments) }
   end
 
-  describe "has_secure_password" do
+  describe 'has_secure_password' do
     it { should have_secure_password }
-  end  
+  end
 
   describe 'validations' do
     it { should validate_presence_of(:name) }

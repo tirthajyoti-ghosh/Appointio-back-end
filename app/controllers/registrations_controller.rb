@@ -12,6 +12,6 @@ class RegistrationsController < ApplicationController
       render json: { status: 'created', user: { id: user.id, name: user.name, email: user.email } }, status: :created
     else
       render json: { errors: user.errors.full_messages }
-    end    
+    end
   end
 end

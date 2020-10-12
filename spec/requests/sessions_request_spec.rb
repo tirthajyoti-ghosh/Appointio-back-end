@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Sessions", type: :request do
+RSpec.describe 'Sessions', type: :request do
   before :all do
     User.create(
       name: 'Testing User',
@@ -39,7 +39,7 @@ RSpec.describe "Sessions", type: :request do
 
     it 'returns error message for invalid user' do
       post 'http://localhost:3000/login', params: { user: { email: 'testuser@testing.com', password: '123000' } }
-      
+
       expect(JSON[response.body]['message']).to eq('Invalid email/password')
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe "Sessions", type: :request do
   describe 'DELETE /logout' do
     it 'resets the current session and returns logged_out: true' do
       delete 'http://localhost:3000/logout'
-      
+
       expect(JSON[response.body]['logged_out']).to be true
     end
   end
