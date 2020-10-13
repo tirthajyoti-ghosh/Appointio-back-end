@@ -30,7 +30,7 @@
   <h3 align="center">Appointio (back-end)</h3>
 
   <p align="center">
-    Rails back-end to <a href="https://github.com/tirthajyoti-ghosh/final-capstone-backend">this</a> React web app.
+    Rails back-end to <a href="https://github.com/tirthajyoti-ghosh/final-capstone-frontend">this</a> React web app.
     <br />
     <a href="https://github.com/tirthajyoti-ghosh/final-capstone-backend"><strong>Explore the docs »</strong></a>
     <br />
