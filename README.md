@@ -151,10 +151,10 @@ To get a local copy up and running follow these simple steps.
 6. Start local server
 
     ```sh
-    rails server
+    rails s -p 3001
     ```
 
-7. Visit `http://localhost:3000/` in your browser.
+7. Visit `http://localhost:3001/` in your browser.
 
 ## Run tests
 
