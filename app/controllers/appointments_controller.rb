@@ -40,8 +40,6 @@ class AppointmentsController < ApplicationController
   private
 
   def validate_login
-    unless @current_user
-      render json: { status: 'Unauthorized', message: 'You need to login first.' }, status: 401
-    end
+    render json: { status: 'Unauthorized', message: 'You need to login first.' }, status: 401 unless @current_user
   end
 end

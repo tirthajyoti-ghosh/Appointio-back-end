@@ -10,8 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    # TODO: change the URL when API is hosted on Heroku
-    origins "https://final-capstone-backend.herokuapp.com"
+    origins "https://adoring-pike-d04b95.netlify.app/"
     resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
 end
