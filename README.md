@@ -30,7 +30,7 @@
   <h3 align="center">Appointio (back-end)</h3>
 
   <p align="center">
-    Rails back-end to <a href="https://github.com/tirthajyoti-ghosh/final-capstone-backend">this</a> React web app.
+    Rails back-end to <a href="https://github.com/tirthajyoti-ghosh/final-capstone-frontend">this</a> React web app.
     <br />
     <a href="https://github.com/tirthajyoti-ghosh/final-capstone-backend"><strong>Explore the docs »</strong></a>
     <br />
@@ -151,10 +151,10 @@ To get a local copy up and running follow these simple steps.
 6. Start local server
 
     ```sh
-    rails server
+    rails s -p 3001
     ```
 
-7. Visit `http://localhost:3000/` in your browser.
+7. Visit `http://localhost:3001/` in your browser.
 
 ## Run tests
 
