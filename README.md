@@ -167,7 +167,8 @@ rspec
 <!-- ROADMAP -->
 ## Roadmap
 
-Implement admin panel.
+* Implement admin panel.
+* API docs
 
 <!-- CONTRIBUTING -->
 ## Contributing
