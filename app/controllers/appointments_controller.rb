@@ -1,5 +1,4 @@
 class AppointmentsController < ApplicationController
-  include CurrentUserConcern
   include ProcessDataConcern
 
   before_action :validate_login
