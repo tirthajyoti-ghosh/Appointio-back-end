@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  post '/login', to: "sessions#create"
-  delete '/logout', to: "sessions#destroy"
-  get '/logged_in', to: "sessions#logged_in"
-  
-  resources :registrations, only: [:create]
+  post '/login', to: "users#login"
+  post '/register', to: "users#create"
+  delete '/logout', to: "users#destroy"
+  get '/logged_in', to: "users#logged_in"
 
-  get '/types', to: "types#index"
-  get '/types/:id', to: "types#show"
+  resources :types, only: [:index, :show]
 
-  get '/apartments', to: "apartments#index"
-  get '/apartments/:id', to: "apartments#show"
+  resources :apartments, only: [:index, :show]
 
   resources :appointments, only: [:index, :create, :destroy]
 end
