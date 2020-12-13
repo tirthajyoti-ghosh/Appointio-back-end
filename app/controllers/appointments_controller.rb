@@ -11,13 +11,9 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    appointment = Appointment.new(
-      date: params[:appointment][:date],
-      apartment_id: params[:appointment][:apartment_id],
-      user_id: @current_user.id
-    )
+    new_appointment = @current_user.appointments.build(appointment_params)
 
-    if appointment.save
+    if new_appointment.save
       render json: { message: 'Appointment created!' }, status: :created
     else
       render json: { message: 'Request failed. Try again.' }, status: 500
@@ -40,6 +36,11 @@ class AppointmentsController < ApplicationController
   private
 
   def validate_login
-    render json: { status: 'Unauthorized', message: 'You need to login first.' }, status: 401 unless @current_user
+    set_current_user
+    render json: { message: 'You need to login first.' }, status: 401 unless @current_user
+  end
+
+  def appointment_params
+    params.require(:appointment).permit(:date, :apartment_id)
   end
 end
