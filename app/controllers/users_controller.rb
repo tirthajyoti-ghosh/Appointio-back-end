@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class UsersController < ApplicationController
   include CurrentUserConcern
 
   # POST /login
