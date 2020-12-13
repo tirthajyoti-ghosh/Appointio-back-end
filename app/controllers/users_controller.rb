@@ -1,62 +1,33 @@
 class UsersController < ApplicationController
-  
+  include ProcessDataConcern
+
+  # POST /register
   def create
-    user = User.new(
-      name: params[:user][:name],
-      email: params[:user][:email],
-      password: params[:user][:password],
-      password_confirmation: params[:user][:password_confirmation]
-    )
+    user = User.new(user_params)
 
     if user.save
-      session[:user_id] = user.id
-      render json: { status: 'created', user: { id: user.id, name: user.name, email: user.email } }, status: :created
+      token = encode_token(process_user_data(user, true))
+      render json: { token: token, user: process_user_data(user) }, status: :created
     else
       render json: { errors: user.errors.full_messages }
     end
   end
 
   # POST /login
-  def create
-    user = User
-      .find_by(email: params[:user][:email])
-      .try(:authenticate, params[:user][:password])
+  def login
+    user = User.find_by(email: params[:user][:email])
 
-    if user
-      session[:user_id] = user.id
-
-      render json: {
-        logged_in: true,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email
-        }
-      }, status: :created
+    if user&.authenticate(params[:user][:password])
+      token = encode_token(process_user_data(user, true))
+      render json: { token: token, user: process_user_data(user) }
     else
       render json: { message: 'Invalid email/password' }, status: 422
     end
   end
 
-  # GET /logged_in
-  def logged_in
-    if @current_user
-      render json: {
-        logged_in: true,
-        user: {
-          id: @current_user.id,
-          name: @current_user.name,
-          email: @current_user.email
-        }
-      }
-    else
-      render json: { logged_in: false }
-    end
-  end
+  private
 
-  # DELETE /logout
-  def destroy
-    reset_session
-    render json: { logged_out: true }
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

@@ -39,4 +39,19 @@ module ProcessDataConcern
 
     appointments_array
   end
+
+  def process_user_data(user, is_token = false)
+    if is_token
+      {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    else
+      {
+        name: user.name,
+        email: user.email
+      }
+    end
+  end
 end

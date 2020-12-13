@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
+
   HMAC_SCRET = 'my$ecretK3y'
   ALGORITHM_TYPE = 'HS256'
 
