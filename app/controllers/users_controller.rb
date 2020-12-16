@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     if user.save
       token = encode_token(process_user_data(user, true))
-      render json: { token: token, user: process_user_data(user) }, status: :created
+      render_user_json(token, user, true)
     else
       render json: { errors: user.errors.full_messages }
     end
@@ -19,13 +19,21 @@ class UsersController < ApplicationController
 
     if user&.authenticate(params[:user][:password])
       token = encode_token(process_user_data(user, true))
-      render json: { token: token, user: process_user_data(user) }
+      render_user_json(token, user)
     else
       render json: { message: 'Invalid email/password' }, status: 422
     end
   end
 
   private
+
+  def render_user_json(token, user, is_create = false)
+    if is_create
+      render json: { token: token, user: process_user_data(user) }, status: :created
+    else
+      render json: { token: token, user: process_user_data(user) }
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
